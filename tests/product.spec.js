@@ -6,17 +6,17 @@ test.describe('Pruebas de la página de productos', () => {
 
   let loginPage;
   let productsPage;
-
+    // Test para inicializar la página de login y navegar hacia ella antes de que comience cada prueba
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
     productsPage = new ProductsPage(page);
 
-    // Navegar e iniciar sesión antes de cada prueba
+    // Test para Navegar e iniciar sesión antes de cada prueba
     await loginPage.navigate();
     await loginPage.login('standard_user', 'secret_sauce');
   });
-
-  test('Validar agregar productos al carrito', async ({ page }) => {
+  
+  test('US3. Validar agregar productos al carrito', async ({ page }) => {
     await productsPage.addProductToCart('Sauce Labs Backpack');
     await productsPage.addProductToCart('Sauce Labs Bike Light');
 
@@ -24,7 +24,7 @@ test.describe('Pruebas de la página de productos', () => {
     expect(cartItems).toBe(2);
   });
 
-  test('Validar eliminar productos del carrito', async ({ page }) => {
+  test('US3. Validar eliminar productos del carrito', async ({ page }) => {
     await productsPage.addProductToCart('Sauce Labs Backpack');
     await productsPage.addProductToCart('Sauce Labs Bike Light');
 
@@ -34,7 +34,7 @@ test.describe('Pruebas de la página de productos', () => {
     expect(cartItems).toBe(1);
   });
 
-  test('Validar ordenar productos por nombre', async ({ page }) => {
+  test('US4. Validar ordenar productos por nombre', async ({ page }) => {
     await productsPage.sortProductsBy('az'); 
 
     const productNames = await productsPage.getProductNames();
@@ -43,7 +43,7 @@ test.describe('Pruebas de la página de productos', () => {
     expect(productNames).toEqual(sortedNames);
   });
 
-  test('Validar ordenar productos por precio', async ({ page }) => {
+  test('US4. Validar ordenar productos por precio', async ({ page }) => {
     await productsPage.sortProductsBy('lohi'); // Orden ascendente por precio
   
     const productPrices = await productsPage.getProductPrices();
@@ -52,8 +52,15 @@ test.describe('Pruebas de la página de productos', () => {
     expect(productPrices).toEqual(sortedPrices);
   });
 
-  test('Validar acceder a la página de detalles desde el nombre o la imagen', async ({ page }) => {
-    await productsPage.visitProductDetail('Sauce Labs Backpack');
+  test('US5. Validar acceder a la página de detalles desde el nombre', async ({ page }) => {
+    await productsPage.clickProductDetail('Sauce Labs Backpack');
+
+    const productTitle = await productsPage.getProductDetailTitle('Sauce Labs Backpack');
+    expect(productTitle).toBe('Sauce Labs Backpack');
+  });
+
+  test('US5. Validar acceder a la página de detalles desde la imagen', async ({ page }) => {
+    await productsPage.clickProductImage('Sauce Labs Backpack');
 
     const productTitle = await productsPage.getProductDetailTitle('Sauce Labs Backpack');
     expect(productTitle).toBe('Sauce Labs Backpack');

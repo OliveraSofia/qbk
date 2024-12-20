@@ -9,7 +9,7 @@ const productsElements = {
     productPrice: (productName) => `div[data-test="inventory-item-${productName}-price"]`,
     
     sortDropdown: 'div[data-test="inventory-container"]',
-    cartIcon: '#shopping_cart_container',
+    cartIcon: '[data-test="shopping-cart-link"]',
     cartItemCount: '.shopping_cart_badge',
     pricesList : '[data-test^="inventory-item"][data-test$="-price"]',
     namesList : '[data-test="inventory-item-name"]',

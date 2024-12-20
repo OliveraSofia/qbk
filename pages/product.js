@@ -12,7 +12,7 @@ class ProductsPage {  // Clase que representa la página de productos en la apli
     await this.page.click(selector);
   }
 
-  // Methodo para Quitar un producto del carrito
+  // Methodo para quitar un producto del carrito
   async removeProductFromCart(productName) {
     const lowerCaseName = productName.toLowerCase().replace(/\s+/g, '-'); // Convierte el texto del parametro en minusculas y lo separa con guiones para formar los locators.
     const selector = productsElements.productRemoveButton(lowerCaseName);
@@ -20,12 +20,12 @@ class ProductsPage {  // Clase que representa la página de productos en la apli
   }
 
   // Methodo para ir a los detalles de un producto a través del título
-  async visitProductDetail(productName) {
+  async clickProductDetail(productName) {
     const selector = productsElements.productDetailLink(productName);
     await this.page.click(selector);
   }
 
-  // Methodo para hacer clic en la imagen del producto
+  // Methodo para ir a los detalles de un producto a través de la imagen
   async clickProductImage(productName) {
     const lowerCaseName = productName.toLowerCase().replace(/\s+/g, '-'); 
     const selector = productsElements.productImage(lowerCaseName);

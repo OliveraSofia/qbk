@@ -16,6 +16,7 @@ It provides descriptive error messages and offers an intuitive UI for checking b
     - Utilities module: A module designed to store methods that are reused across various page tests.
     - External Test Data: A file with all the hard-coded test data like credentials, urls or products names.
     - Define Constants or Variables instead of using hard-coded numbers.
+    - Testing Unit Test: A test group to test out methods to ensure that there are no false positives or false negatives.
 
     1. Authentication & Login Flows
 

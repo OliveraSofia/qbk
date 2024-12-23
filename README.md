@@ -1,17 +1,17 @@
-##Project: E2E Testing for E-Commerce Demo
+## Project: E2E Testing for E-Commerce Demo
 
-##Description:
+## Description:
 
 This project includes end-to-end automated tests for a demonstration of a shopping flow in an e-commerce application. 
 
 These tests are part of a demo for a client, focusing on the most important user flows. Please note that due to time constraints, the implementation may not reflect the best practices for reusability and scalability. With more time, additional refinements and reusable methods could have been incorporated.
 
-##System Requirements:
+## System Requirements:
 
  Node.js (version >= 16.x)
  Playwright (installed as a project dependency)
 
-##Test Cases:
+### Test Cases:
 
 1. Login using any of the credentials provided. 
 2. Test the invalid login flow. 
@@ -24,29 +24,31 @@ These tests are part of a demo for a client, focusing on the most important user
 9. Confirm order checkout can be completed. 
 10. Logout of the site 
 
-##Clone and Installation
+## Clone and Installation
 
-Clone repository:
+### Clone repository:
+```
+ $ git clone <repository-url>
+ $ cd <repository-name>
+```
+### Install dependencies:
 
- **git clone <repository-url>
- **cd <repository-name>
+```
+ $ npm install
+```
 
-##Install dependencies:
-
- **npm install
-
-##Running Tests
+## Running Tests
 
 Run all tests with the following command:
-
- **npx playwright test
-
+```
+ $ npx playwright test
+```
 To run specific tests, use:
-
- **npx playwright test  <module-name>
-
+```
+ $ npx playwright test  <module-name>
+```
 To open last HTML report run:
-
- **npx playwright show-report
-
+```
+ $ npx playwright show-report
+```
 

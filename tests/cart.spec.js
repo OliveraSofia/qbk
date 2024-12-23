@@ -13,12 +13,12 @@ test.describe('Pruebas de Cart', () => {
         loginPage = new LoginPage(page);
         productsPage = new ProductsPage(page);
         cartPage = new CartPage(page);
-        await loginPage.navigate();
+        await loginPage.navigate('https://www.saucedemo.com');
         await loginPage.login('standard_user', 'secret_sauce');
         await productsPage.addProductToCart('Sauce Labs Backpack');
     });  
 
-    test('Precondition. Hace clic en el ícono del carrito para navegar a la página "Your Cart"', async ({ page }) => {
+    test('Verifica que al hacer clic en el ícono del carrito navega a la página "Your Cart"', async ({ page }) => {
         await page.click(productsElements.cartIcon);
         await expect(page).toHaveURL('https://www.saucedemo.com/cart.html')
     });     

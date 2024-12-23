@@ -6,7 +6,7 @@ test.describe('Pruebas de Login', () => {
     // Test para inicializar la página de login y navegar hacia ella antes de que comience cada prueba
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
-    await loginPage.navigate();
+    await loginPage.navigate('https://www.saucedemo.com');
   });
 
   test('US1. Iniciar sesión con credenciales válidas', async ({ page }) => {

@@ -12,7 +12,7 @@ test.describe('Pruebas de la página de productos', () => {
     productsPage = new ProductsPage(page);
 
     // Test para Navegar e iniciar sesión antes de cada prueba
-    await loginPage.navigate();
+    await loginPage.navigate('https://www.saucedemo.com/');
     await loginPage.login('standard_user', 'secret_sauce');
   });
   
@@ -67,3 +67,4 @@ test.describe('Pruebas de la página de productos', () => {
   });
 
 });
+

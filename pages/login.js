@@ -6,8 +6,8 @@ class LoginPage {  // Clase que representa la página de login en la aplicación
   }
   
   // Metodo que abre la pagina
-  async navigate() {
-    await this.page.goto('https://www.saucedemo.com/');
+  async navigate(URL) {
+    await this.page.goto(URL);
   }
   // Methodo para ingresar credenciales e ingresar en el portal
   async login(username, password) {

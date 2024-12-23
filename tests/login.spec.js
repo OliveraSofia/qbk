@@ -1,17 +1,18 @@
 import { test, expect } from '@playwright/test';
 import LoginPage from '../pages/login';
+import config from '../config.json';
 
 test.describe('Pruebas de Login', () => {
   let loginPage;
     // Test para inicializar la página de login y navegar hacia ella antes de que comience cada prueba
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
-    await loginPage.navigate('https://www.saucedemo.com');
+    await loginPage.navigate(config.loginData.url);
   });
 
   test('US1. Iniciar sesión con credenciales válidas', async ({ page }) => {
-    await loginPage.login('standard_user', 'secret_sauce');
-    await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+    await loginPage.login(config.loginData.username, config.loginData.password);
+    await expect(page).toHaveURL(config.productData.url);
   });
 
   test('US2. Iniciar sesión con credenciales válidas y mostrar un error', async ({ page }) => {

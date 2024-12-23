@@ -4,6 +4,7 @@ import ProductsPage from '../pages/product';
 import CheckoutPage from '../pages/checkout';
 import CartPage from '../pages/cart';
 import chcheckoutElements from '../elements/checkout'
+import config from '../config.json';
 
 test.describe('Pruebas de la página de checkout', () => {
   let checkoutPage;
@@ -17,11 +18,11 @@ test.describe('Pruebas de la página de checkout', () => {
     cartPage = new CartPage(page);
     checkoutPage = new CheckoutPage(page);
 
-    await loginPage.navigate('https://www.saucedemo.com');
-    await loginPage.login('standard_user', 'secret_sauce');
-    await productsPage.addProductToCart('Sauce Labs Backpack');
-    await productsPage.addProductToCart('Sauce Labs Bike Light');
-    await loginPage.navigate('https://www.saucedemo.com/checkout-step-one.html');
+    await loginPage.navigate(config.loginData.url);
+    await loginPage.login(config.loginData.username, config.loginData.password);
+    await productsPage.addProductToCart(config.productData.productSauseBackpk);
+    await productsPage.addProductToCart(config.productData.productLigthSauseBackpk);
+    await loginPage.navigate(config.checkoutData.urlStepOne);
     
   });
  
@@ -40,14 +41,14 @@ test.describe('Pruebas de la página de checkout', () => {
   
     // Verificar que se muestren mensajes de error para campos vacíos
     const errorMessageLocator = page.locator(chcheckoutElements.errorMessage);
-    await expect(errorMessageLocator).toHaveText('Error: First Name is required');
+    await expect(errorMessageLocator).toHaveText(config.checkoutData.formError);
     
   });
 
   test('US8. Verifica que el monto total sea correcto en Checkout Overview', async ({ page }) => {
 
-    await checkoutPage.fillCheckoutInformation('Juan', 'perez', '1234');
-  await expect(page).toHaveURL('https://www.saucedemo.com/checkout-step-two.html');
+    await checkoutPage.fillCheckoutInformation(config.checkoutData.checkoutInfoName, config.checkoutData.checkoutInfoLastName, config.checkoutData.checkoutInfoZipCode);
+  await expect(page).toHaveURL(config.checkoutData.urlStepTwo);
 
     // Obtener precios de productos seleccionados
     const prices = await checkoutPage.getSelectedProductPrices();
@@ -66,14 +67,14 @@ test.describe('Pruebas de la página de checkout', () => {
   });
 
   test('US9. Confirmar que se puede completar la compra', async ({ page }) => {
-    await checkoutPage.fillCheckoutInformation('Juan', 'perez', '1234');
+    await checkoutPage.fillCheckoutInformation(config.checkoutData.checkoutInfoName, config.checkoutData.checkoutInfoLastName, config.checkoutData.checkoutInfoZipCode);
   
     // Completar la compra
     await checkoutPage.completeOrder();
 
     // Validar que el mensaje de éxito esté presente
     const successMessage = await checkoutPage.getSuccessMessage();
-    expect(successMessage).toContain('Thank you for your order!');
+    expect(successMessage).toContain(config.checkoutData.successMessage);
   });
   
   test('US10. Cerrar sesión del sitio', async ({ page }) => {
@@ -82,7 +83,7 @@ test.describe('Pruebas de la página de checkout', () => {
     await checkoutPage.logout();
   
     // Verificar que se redirige a la página de inicio de sesión
-    await expect(page).toHaveURL('https://www.saucedemo.com/');
+    await expect(page).toHaveURL(config.loginData.url);
   });
   
   

@@ -1,0 +1,28 @@
+{
+  "loginData": {
+    "url": "https://www.saucedemo.com/",
+    "username": "standard_user",
+    "password": "secret_sauce"
+  },
+
+  "productData" : {
+    "url": "https://www.saucedemo.com/inventory.html",
+    "productSauseBackpk": "Sauce Labs Backpack",
+    "productLigthSauseBackpk": "Sauce Labs Bike Light"
+
+  },
+
+  "cartData" : {
+    "url" : "https://www.saucedemo.com/cart.html"
+
+  },
+  "checkoutData": {
+    "urlStepOne": "https://www.saucedemo.com/checkout-step-one.html",
+    "urlStepTwo":"https://www.saucedemo.com/checkout-step-two.html",
+    "formError" : "Error: First Name is required",
+    "checkoutInfoName": "Juan",
+    "checkoutInfoLastName": "perez",
+    "checkoutInfoZipCode":"1234",
+    "successMessage": "Thank you for your order!"
+  }
+}

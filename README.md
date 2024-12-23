@@ -9,7 +9,8 @@ These tests are part of a demo for a client, focusing on the most important user
 ## System Requirements:
 
  Node.js (version >= 16.x)
- Playwright (installed as a project dependency)
+ Playwright (installed as a project dependency) version: 1.49.1
+
 
 ### Test Cases:
 
@@ -45,7 +46,7 @@ Run all tests with the following command:
 ```
 To run specific tests, use:
 ```
- $ npx playwright test  <module-name>
+ $ npx playwright test  <module-name> (Ex: npx playwright test product)
 ```
 To open last HTML report run:
 ```

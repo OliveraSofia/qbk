@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import LoginPage from '../pages/login';
 import ProductsPage from '../pages/product';
+import config from '../config.json';
 
 test.describe('Pruebas de la página de productos', () => {
 
@@ -12,23 +13,23 @@ test.describe('Pruebas de la página de productos', () => {
     productsPage = new ProductsPage(page);
 
     // Test para Navegar e iniciar sesión antes de cada prueba
-    await loginPage.navigate('https://www.saucedemo.com/');
-    await loginPage.login('standard_user', 'secret_sauce');
+    await loginPage.navigate(config.loginData.url);
+    await loginPage.login(config.loginData.username, config.loginData.password);
   });
   
   test('US3. Validar agregar productos al carrito', async ({ page }) => {
-    await productsPage.addProductToCart('Sauce Labs Backpack');
-    await productsPage.addProductToCart('Sauce Labs Bike Light');
+    await productsPage.addProductToCart(config.productData.productSauseBackpk);
+    await productsPage.addProductToCart(config.productData.productLigthSauseBackpk);
 
     const cartItems = await productsPage.getCartItemCount();
     expect(cartItems).toBe(2);
   });
 
   test('US3. Validar eliminar productos del carrito', async ({ page }) => {
-    await productsPage.addProductToCart('Sauce Labs Backpack');
-    await productsPage.addProductToCart('Sauce Labs Bike Light');
+    await productsPage.addProductToCart(config.productData.productSauseBackpk);
+    await productsPage.addProductToCart(config.productData.productLigthSauseBackpk);
 
-    await productsPage.removeProductFromCart('Sauce Labs Bike Light');
+    await productsPage.removeProductFromCart(config.productData.productLigthSauseBackpk);
 
     const cartItems = await productsPage.getCartItemCount();
     expect(cartItems).toBe(1);
@@ -53,17 +54,17 @@ test.describe('Pruebas de la página de productos', () => {
   });
 
   test('US5. Validar acceder a la página de detalles desde el nombre', async ({ page }) => {
-    await productsPage.clickProductDetail('Sauce Labs Backpack');
+    await productsPage.clickProductDetail(config.productData.productSauseBackpk);
 
-    const productTitle = await productsPage.getProductDetailTitle('Sauce Labs Backpack');
-    expect(productTitle).toBe('Sauce Labs Backpack');
+    const productTitle = await productsPage.getProductDetailTitle(config.productData.productSauseBackpk);
+    expect(productTitle).toBe(config.productData.productSauseBackpk);
   });
 
   test('US5. Validar acceder a la página de detalles desde la imagen', async ({ page }) => {
-    await productsPage.clickProductImage('Sauce Labs Backpack');
+    await productsPage.clickProductImage(config.productData.productSauseBackpk);
 
-    const productTitle = await productsPage.getProductDetailTitle('Sauce Labs Backpack');
-    expect(productTitle).toBe('Sauce Labs Backpack');
+    const productTitle = await productsPage.getProductDetailTitle(config.productData.productSauseBackpk);
+    expect(productTitle).toBe(config.productData.productSauseBackpk);
   });
 
 });
